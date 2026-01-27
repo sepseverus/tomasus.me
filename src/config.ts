@@ -1,9 +1,9 @@
 export const SITE = {
-  website: "https://tikrit.github.io/", // replace this with your deployed domain
-  author: "Tikrit",
-  profile: "https://tikrit.github.io/",
-  desc: "Thoughts on cybersecurity, technology, and wellbeing from someone who cares deeply about what works.",
-  title: "Tikrit",
+  website: "https://example.com/", // replace this with your deployed domain
+  author: "Author Name",
+  profile: "https://example.com/",
+  desc: "Thoughts on technology, security, and personal development.",
+  title: "Blog",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 6,
