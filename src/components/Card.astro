@@ -1,0 +1,69 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { slugifyStr } from "@/utils/slugify";
+import { getPath } from "@/utils/getPath";
+import Datetime from "./Datetime.astro";
+import { Image } from "astro:assets";
+
+type Props = {
+  variant?: "h2" | "h3";
+} & CollectionEntry<"blog">;
+
+const { variant: Heading = "h2", id, data, filePath } = Astro.props;
+
+const { title, description, category, ogImage, ...props } = data;
+
+const categoryColors = {
+  Tech: "bg-violet-500/10 text-violet-600 dark:text-violet-400",
+  Wellbeing: "bg-teal-500/10 text-teal-600 dark:text-teal-400",
+};
+---
+
+<li class="group">
+  <a
+    href={getPath(id, filePath)}
+    class="block overflow-hidden rounded-lg border border-border bg-muted/30 transition-all hover:border-accent hover:bg-muted/50"
+  >
+    {
+      ogImage && (
+        <div class="aspect-[16/9] overflow-hidden">
+          {typeof ogImage === "string" ? (
+            <img
+              src={ogImage}
+              alt={title}
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            />
+          ) : (
+            <Image
+              src={ogImage}
+              alt={title}
+              class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              widths={[400, 600]}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            />
+          )}
+        </div>
+      )
+    }
+    <div class="p-5">
+      <div class="mb-3 flex items-center gap-3">
+        <span
+          class:list={[
+            "rounded-full px-3 py-1 text-xs font-medium",
+            categoryColors[category],
+          ]}
+        >
+          {category}
+        </span>
+        <Datetime {...props} />
+      </div>
+      <Heading
+        class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent"
+        style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
+      >
+        {title}
+      </Heading>
+      <p class="line-clamp-2 text-sm text-foreground/70">{description}</p>
+    </div>
+  </a>
+</li>

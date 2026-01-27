@@ -1,0 +1,155 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import Socials from "@/components/Socials.astro";
+import LinkButton from "@/components/LinkButton.astro";
+import Card from "@/components/Card.astro";
+import getSortedPosts from "@/utils/getSortedPosts";
+import getPostsByCategory from "@/utils/getPostsByCategory";
+import IconRss from "@/assets/icons/IconRss.svg";
+import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
+import { SITE } from "@/config";
+import { SOCIALS } from "@/constants";
+
+const posts = await getCollection("blog");
+
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured).slice(0, 4);
+const latestPosts = sortedPosts.slice(0, SITE.postPerIndex);
+
+const techPosts = getPostsByCategory(posts, "Tech");
+const wellbeingPosts = getPostsByCategory(posts, "Wellbeing");
+
+const categories = [
+  {
+    name: "Tech",
+    slug: "tech",
+    description: "Cybersecurity, AI, and technology insights",
+    count: techPosts.length,
+  },
+  {
+    name: "Wellbeing",
+    slug: "wellbeing",
+    description: "Mental health, biohacking, and wellness practices",
+    count: wellbeingPosts.length,
+  },
+];
+---
+
+<Layout>
+  <Header />
+  <main id="main-content" data-layout="index" class="app-layout">
+    <!-- Hero Section -->
+    <section id="hero" class:list={["pt-8 pb-10", "border-b border-border"]}>
+      <div class="flex items-center justify-between">
+        <h1 class="my-4 text-4xl font-bold sm:my-8 sm:text-5xl">
+          {SITE.title}
+        </h1>
+        <a
+          target="_blank"
+          href="/rss.xml"
+          class="inline-block"
+          aria-label="rss feed"
+          title="RSS Feed"
+        >
+          <IconRss
+            width={20}
+            height={20}
+            class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
+          />
+          <span class="sr-only">RSS Feed</span>
+        </a>
+      </div>
+
+      <p class="text-lg text-foreground/90">
+        {SITE.desc}
+      </p>
+
+      {
+        // only display if at least one social link is enabled
+        SOCIALS.length > 0 && (
+          <div class="mt-6 flex max-sm:flex-col sm:items-center">
+            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Connect:</div>
+            <Socials />
+          </div>
+        )
+      }
+    </section>
+
+    <!-- Featured Posts Section -->
+    {
+      featuredPosts.length > 0 && (
+        <section id="featured" class="pt-12 pb-10 border-b border-border">
+          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Featured</h2>
+          <ul class="grid gap-6 sm:grid-cols-2">
+            {featuredPosts.map(data => (
+              <Card {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <!-- Latest Posts Section -->
+    {
+      latestPosts.length > 0 && (
+        <section id="latest-posts" class="pt-12 pb-10 border-b border-border">
+          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Latest Posts</h2>
+          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {latestPosts.map(data => (
+              <Card {...data} />
+            ))}
+          </ul>
+        </section>
+      )
+    }
+
+    <!-- Category Quick Links Section -->
+    <section id="categories" class="pt-12 pb-10 border-b border-border">
+      <h2 class="mb-6 text-2xl font-semibold tracking-wide">Browse by Category</h2>
+      <ul class="grid gap-6 sm:grid-cols-2">
+        {
+          categories.map(category => (
+            <li>
+              <a
+                href={`/categories/${category.slug}`}
+                class="group block rounded-lg border border-border bg-muted/30 p-6 transition-all hover:border-accent hover:bg-muted/50"
+              >
+                <h3 class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent">
+                  {category.name}
+                </h3>
+                <p class="mb-3 text-sm text-foreground/70">
+                  {category.description}
+                </p>
+                <p class="text-sm font-medium text-accent">
+                  {category.count} {category.count === 1 ? "post" : "posts"}
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- All Posts Button -->
+    <div class="my-10 text-center">
+      <LinkButton href="/posts/">
+        All Posts
+        <IconArrowRight class="inline-block rtl:-rotate-180" />
+      </LinkButton>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
+      ?.dataset?.layout;
+    if (indexLayout) {
+      sessionStorage.setItem("backUrl", "/");
+    }
+  });
+</script>

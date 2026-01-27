@@ -1,0 +1,21 @@
+---
+import { SITE } from "@/config";
+import Socials from "./Socials.astro";
+
+const { author = SITE.author } = Astro.props;
+---
+
+<div class="my-8 rounded-lg border border-border bg-muted/30 p-6">
+  <div class="flex items-start gap-4">
+    <div class="flex-1">
+      <h3 class="mb-2 text-lg font-semibold text-foreground">
+        About {author}
+      </h3>
+      <p class="mb-4 text-sm text-foreground/80">
+        A cybersecurity professional who cares deeply about mental wellbeing,
+        health, and new technologies. Writing from lived experience about what works.
+      </p>
+      <Socials />
+    </div>
+  </div>
+</div>
