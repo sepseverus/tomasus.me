@@ -11,7 +11,7 @@ tags:
   - technology
 ---
 
-![Minimal desk with notebook and pen, representing focused analog learning](/images/welcome-hero-desk-optimized.png)
+![Minimal desk with notebook and pen, representing focused analog learning](/tikrit_blog/images/welcome-hero-desk-optimized.png)
 
 I'm writing these notes for myself. If they help you too, that's a bonus.
 
@@ -29,7 +29,7 @@ Focus will be one of the most valuable skills in the future. I'm exposed to thes
 
 ## The Balance
 
-![Balance scale showing technology on one side and wellbeing on the other](/images/welcome-balance-scale-optimized.png)
+![Balance scale showing technology on one side and wellbeing on the other](/tikrit_blog/images/welcome-balance-scale-optimized.png)
 
 Technology needs context. AI and cybersecurity matter, but so do wellbeing and longevity. I care about mental health as much as I care about learning new frameworks.
 
