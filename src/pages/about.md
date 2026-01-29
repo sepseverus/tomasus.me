@@ -5,28 +5,42 @@ title: "About"
 
 ## Who I Am
 
-I'm a curious individual exploring AI, cybersecurity, mental health, and wellbeing. I write to understand these topics better. Writing forces clarity, and sharing publicly keeps me honest.
+Someone who wants to understand what is coming and how we as human beings will be impacted.
 
-I'm not an expert. I'm a learner documenting the process.
+I work in technology. I read history. I think a lot about how to stay grounded while everything around us accelerates.
 
 ## What This Site Is
 
-This is my public notebook. I write these notes for myself first. If they help you too, that's a bonus.
+This is my public notebook. I write these notes for myself first. Writing forces me to think clearly. Sharing publicly keeps me accountable.
 
-You'll find learning notes, not tutorials. I start with fundamentals and build up. Expect circuits, binary, how computers work, then AI and security concepts. I also write about focus, attention, and maintaining balance in a world designed to distract.
+These are not tutorials. They are overviews of the things I think matter. If they help you too, that's a bonus.
 
-## Why I Write About These Topics
+## What I Cover
 
-Technology affects everything we do now. I'm concerned about what social media and AI are doing to our ability to focus. We're losing the capacity for deep attention. Notifications pull us away constantly. Algorithms keep us scrolling.
+**Technology from the ground up.** How electricity works, semiconductors, data centers, cloud infrastructure. LLMs, algorithms, and what the frontier labs are building. You need to understand these things to understand what's coming.
 
-Focus will be one of the most valuable skills in the future. I want to use these technologies responsibly, understand how they work, and know when to step away.
+**Cybersecurity and its impact.** How attacks work, what's changing, and why it matters for everyone.
 
-## My Approach
+**What social media and AI are doing to our brains.** How algorithms keep us scrolling. What that does to our attention, our mental health, and our ability to think clearly.
 
-I care about how technology affects mental health. Privacy and security matter, but so does wellbeing. These areas connect. How we use technology affects how we feel. The habits we build today shape our future selves.
+**Focus as a skill.** I believe focus will be one of the most valuable abilities in the future. We're losing it, and most people don't notice until it's gone.
 
-Technology is a tool, not a lifestyle.
+**History.** Revolutions have happened before. New technologies wiped out entire industries. Looking at how humans reacted to past disruptions helps me think about what's ahead.
 
-## A Note on Accuracy
+## How I Write
 
-You may see mistakes, corrections, and changes in thinking. That's the learning process. If something isn't clear or wrong, let me know. These notes work better as a conversation.
+I keep things simple. Short sentences. Clear structure. If I can't explain something simply, I probably don't understand it well enough yet.
+
+You won't find jargon here for the sake of sounding smart. The goal is clarity. I'd rather be understood than impressive.
+
+You will see mistakes, corrections, and changes in thinking. That's the point. Learning out loud means showing the process, not just the conclusions.
+
+## Balance
+
+Technology should help us, not consume us. That sounds obvious, but look around.
+
+People check their phones 100 times a day. Kids can't sit through a meal without a screen. Adults doom-scroll for hours and wonder why they feel anxious.
+
+I care about maintaining independence. Using these tools on my terms, not theirs. Knowing when to switch off. Keeping a balance between the digital world and the real one.
+
+Staying sane in the middle of all this is not automatic. It takes intention.
