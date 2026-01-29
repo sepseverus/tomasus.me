@@ -6,6 +6,7 @@ import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
 import IconMenuDeep from "@/assets/icons/IconMenuDeep.svg";
+import LogoNotebook from "@/assets/icons/LogoNotebook.svg";
 import LinkButton from "./LinkButton.astro";
 import { SITE } from "@/config";
 
@@ -45,8 +46,9 @@ const isActive = (path: string) => {
   >
     <a
       href="/"
-      class="absolute py-1 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
+      class="absolute py-1 flex items-center gap-2 text-xl leading-8 font-semibold whitespace-nowrap sm:static sm:my-auto sm:text-2xl sm:leading-none"
     >
+      <LogoNotebook class="w-6 h-6 sm:w-7 sm:h-7" />
       {SITE.title}
     </a>
     <nav

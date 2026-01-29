@@ -6,8 +6,10 @@ import Footer from "@/components/Footer.astro";
 import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
+import Tag from "@/components/Tag.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import getPostsByCategory from "@/utils/getPostsByCategory";
+import getUniqueTags from "@/utils/getUniqueTags";
 import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
@@ -22,6 +24,10 @@ const latestPosts = sortedPosts.slice(0, SITE.postPerIndex);
 const techPosts = getPostsByCategory(posts, "Tech");
 const brainPosts = getPostsByCategory(posts, "Brain");
 const historyPosts = getPostsByCategory(posts, "History");
+
+// Get popular tags (top 10)
+const allTags = getUniqueTags(posts);
+const popularTags = allTags.slice(0, 10);
 
 const categories = [
   {
@@ -70,9 +76,15 @@ const categories = [
         </a>
       </div>
 
-      <p class="text-lg text-foreground/90">
-        {SITE.desc}
-      </p>
+      <div class="space-y-4 mt-4">
+        <p class="text-xl font-medium text-foreground">
+          {SITE.desc}
+        </p>
+        <p class="text-base text-foreground/70 max-w-2xl">
+          I'm not an expert. I'm a learner documenting the process. These notes
+          are for me first—if they help you too, that's a bonus.
+        </p>
+      </div>
 
       {
         // only display if at least one social link is enabled
@@ -83,6 +95,33 @@ const categories = [
           </div>
         )
       }
+    </section>
+
+    <!-- Category Quick Links Section (Moved up for better discovery) -->
+    <section id="categories" class="pt-12 pb-10 border-b border-border">
+      <h2 class="mb-6 text-2xl font-semibold tracking-wide">Browse by Category</h2>
+      <ul class="grid gap-6 sm:grid-cols-3">
+        {
+          categories.map(category => (
+            <li>
+              <a
+                href={`/categories/${category.slug}`}
+                class="group block rounded-lg border border-border bg-muted/30 p-6 transition-all hover:border-accent hover:bg-muted/50"
+              >
+                <h3 class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent">
+                  {category.name}
+                </h3>
+                <p class="mb-3 text-sm text-foreground/70">
+                  {category.description}
+                </p>
+                <p class="text-sm font-medium text-accent">
+                  {category.count} {category.count === 1 ? "post" : "posts"}
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </section>
 
     <!-- Featured Posts Section -->
@@ -113,32 +152,25 @@ const categories = [
       )
     }
 
-    <!-- Category Quick Links Section -->
-    <section id="categories" class="pt-12 pb-10 border-b border-border">
-      <h2 class="mb-6 text-2xl font-semibold tracking-wide">Browse by Category</h2>
-      <ul class="grid gap-6 sm:grid-cols-3">
-        {
-          categories.map(category => (
-            <li>
-              <a
-                href={`/categories/${category.slug}`}
-                class="group block rounded-lg border border-border bg-muted/30 p-6 transition-all hover:border-accent hover:bg-muted/50"
-              >
-                <h3 class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent">
-                  {category.name}
-                </h3>
-                <p class="mb-3 text-sm text-foreground/70">
-                  {category.description}
-                </p>
-                <p class="text-sm font-medium text-accent">
-                  {category.count} {category.count === 1 ? "post" : "posts"}
-                </p>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
+    <!-- Popular Tags Section -->
+    {
+      popularTags.length > 0 && (
+        <section id="popular-tags" class="pt-12 pb-10 border-b border-border">
+          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Popular Tags</h2>
+          <ul class="flex flex-wrap gap-4">
+            {popularTags.map(({ tag, tagName, count }) => (
+              <Tag tag={tag} tagName={tagName} count={count} size="lg" />
+            ))}
+          </ul>
+          <div class="mt-6 text-center">
+            <LinkButton href="/tags/">
+              View All Tags
+              <IconArrowRight class="inline-block rtl:-rotate-180" />
+            </LinkButton>
+          </div>
+        </section>
+      )
+    }
 
     <!-- All Posts Button -->
     <div class="my-10 text-center">

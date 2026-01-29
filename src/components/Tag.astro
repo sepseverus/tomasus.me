@@ -5,9 +5,10 @@ type Props = {
   tag: string;
   tagName: string;
   size?: "sm" | "lg";
+  count?: number;
 };
 
-const { tag, tagName, size = "lg" } = Astro.props;
+const { tag, tagName, size = "lg", count } = Astro.props;
 ---
 
 <li>
@@ -31,5 +32,10 @@ const { tag, tagName, size = "lg" } = Astro.props;
       ]}
     />
     {tagName}
+    {count && (
+      <sup class="text-xs ml-1 opacity-70">
+        ({count})
+      </sup>
+    )}
   </a>
 </li>

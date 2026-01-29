@@ -2,7 +2,7 @@ export const SITE = {
   website: "https://tomasus.me/",
   author: "Tomasus",
   profile: "https://tomasus.me/",
-  desc: "Thoughts on technology, security, and personal development.",
+  desc: "A public notebook on AI, cybersecurity, and maintaining focus in a world designed to distract.",
   title: "Tomasus",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
