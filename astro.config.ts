@@ -61,8 +61,8 @@ export default defineConfig({
     preserveScriptOrder: true,
     fonts: [
       {
-        name: "Inter",
-        cssVariable: "--font-inter",
+        name: "IBM Plex Sans",
+        cssVariable: "--font-ibm-plex",
         provider: fontProviders.google(),
         fallbacks: ["system-ui", "sans-serif"],
         weights: [400, 500, 600, 700],

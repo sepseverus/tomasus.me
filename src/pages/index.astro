@@ -80,10 +80,6 @@ const categories = [
         <p class="text-xl font-medium text-foreground">
           {SITE.desc}
         </p>
-        <p class="text-base text-foreground/70 max-w-2xl">
-          I'm not an expert. I'm a learner documenting the process. These notes
-          are for me first—if they help you too, that's a bonus.
-        </p>
       </div>
 
       {
@@ -99,7 +95,7 @@ const categories = [
 
     <!-- Category Quick Links Section (Moved up for better discovery) -->
     <section id="categories" class="pt-12 pb-10 border-b border-border">
-      <h2 class="mb-6 text-2xl font-semibold tracking-wide">Browse by Category</h2>
+      <h2 class="section-label mb-6">BROWSE BY CATEGORY</h2>
       <ul class="grid gap-6 sm:grid-cols-3">
         {
           categories.map(category => (
@@ -128,7 +124,7 @@ const categories = [
     {
       featuredPosts.length > 0 && (
         <section id="featured" class="pt-12 pb-10 border-b border-border">
-          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Featured</h2>
+          <h2 class="section-label mb-6">FEATURED</h2>
           <ul class="grid gap-6 sm:grid-cols-2">
             {featuredPosts.map(data => (
               <Card {...data} />
@@ -142,7 +138,7 @@ const categories = [
     {
       latestPosts.length > 0 && (
         <section id="latest-posts" class="pt-12 pb-10 border-b border-border">
-          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Latest Posts</h2>
+          <h2 class="section-label mb-6">LATEST POSTS</h2>
           <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {latestPosts.map(data => (
               <Card {...data} />
@@ -156,7 +152,7 @@ const categories = [
     {
       popularTags.length > 0 && (
         <section id="popular-tags" class="pt-12 pb-10 border-b border-border">
-          <h2 class="mb-6 text-2xl font-semibold tracking-wide">Popular Tags</h2>
+          <h2 class="section-label mb-6">POPULAR TAGS</h2>
           <ul class="flex flex-wrap gap-4">
             {popularTags.map(({ tag, tagName, count }) => (
               <Tag tag={tag} tagName={tagName} count={count} size="lg" />
