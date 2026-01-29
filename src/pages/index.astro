@@ -20,20 +20,27 @@ const featuredPosts = sortedPosts.filter(({ data }) => data.featured).slice(0, 4
 const latestPosts = sortedPosts.slice(0, SITE.postPerIndex);
 
 const techPosts = getPostsByCategory(posts, "Tech");
-const wellbeingPosts = getPostsByCategory(posts, "Wellbeing");
+const brainPosts = getPostsByCategory(posts, "Brain");
+const historyPosts = getPostsByCategory(posts, "History");
 
 const categories = [
   {
     name: "Tech",
     slug: "tech",
-    description: "Cybersecurity, AI, and technology insights",
+    description: "Technology, AI, and cybersecurity",
     count: techPosts.length,
   },
   {
-    name: "Wellbeing",
-    slug: "wellbeing",
-    description: "Mental health, biohacking, and wellness practices",
-    count: wellbeingPosts.length,
+    name: "Brain",
+    slug: "brain",
+    description: "Health, mental wellness, and personal development",
+    count: brainPosts.length,
+  },
+  {
+    name: "History",
+    slug: "history",
+    description: "Historical perspectives and lessons",
+    count: historyPosts.length,
   },
 ];
 ---
@@ -109,7 +116,7 @@ const categories = [
     <!-- Category Quick Links Section -->
     <section id="categories" class="pt-12 pb-10 border-b border-border">
       <h2 class="mb-6 text-2xl font-semibold tracking-wide">Browse by Category</h2>
-      <ul class="grid gap-6 sm:grid-cols-2">
+      <ul class="grid gap-6 sm:grid-cols-3">
         {
           categories.map(category => (
             <li>

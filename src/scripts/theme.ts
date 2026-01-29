@@ -2,10 +2,14 @@
 const THEME = "theme";
 const LIGHT = "light";
 const DARK = "dark";
+const SEPIA = "sepia";
+
+// Theme cycle order: dark → light → sepia → dark
+const THEME_CYCLE = [DARK, LIGHT, SEPIA] as const;
 
 // Initial color scheme
-// Can be "light", "dark", or empty string for system's prefers-color-scheme
-const initialColorScheme = "";
+// Can be "light", "dark", "sepia", or empty string for system's prefers-color-scheme
+const initialColorScheme = DARK;
 
 function getPreferTheme(): string {
   // get theme data from local storage (user's explicit choice)
@@ -71,13 +75,19 @@ if (window.theme) {
 // Ensure theme is reflected (in case body wasn't ready when inline script ran)
 reflectPreference();
 
+function getNextTheme(current: string): string {
+  const currentIndex = THEME_CYCLE.indexOf(current as typeof THEME_CYCLE[number]);
+  const nextIndex = (currentIndex + 1) % THEME_CYCLE.length;
+  return THEME_CYCLE[nextIndex];
+}
+
 function setThemeFeature(): void {
   // set on load so screen readers can get the latest value on the button
   reflectPreference();
 
   // now this script can find and listen for clicks on the control
   document.querySelector("#theme-btn")?.addEventListener("click", () => {
-    themeValue = themeValue === LIGHT ? DARK : LIGHT;
+    themeValue = getNextTheme(themeValue);
     window.theme?.setTheme(themeValue);
     setPreference();
   });
@@ -104,11 +114,14 @@ document.addEventListener("astro:before-swap", event => {
   }
 });
 
-// sync with system changes
+// sync with system changes (only if user hasn't explicitly chosen sepia)
 window
   .matchMedia("(prefers-color-scheme: dark)")
   .addEventListener("change", ({ matches: isDark }) => {
-    themeValue = isDark ? DARK : LIGHT;
-    window.theme?.setTheme(themeValue);
-    setPreference();
+    // Only auto-switch if current theme is light or dark (not sepia)
+    if (themeValue !== SEPIA) {
+      themeValue = isDark ? DARK : LIGHT;
+      window.theme?.setTheme(themeValue);
+      setPreference();
+    }
   });

@@ -3,7 +3,7 @@ import getSortedPosts from "./getSortedPosts";
 
 const getPostsByCategory = (
   posts: CollectionEntry<"blog">[],
-  category: "Tech" | "Wellbeing"
+  category: "Tech" | "Brain" | "History"
 ) => getSortedPosts(posts.filter(post => post.data.category === category));
 
 export default getPostsByCategory;

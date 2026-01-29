@@ -1,6 +1,7 @@
 ---
 import IconX from "@/assets/icons/IconX.svg";
 import IconMoon from "@/assets/icons/IconMoon.svg";
+import IconBook from "@/assets/icons/IconBook.svg";
 import IconSearch from "@/assets/icons/IconSearch.svg";
 import IconArchive from "@/assets/icons/IconArchive.svg";
 import IconSunHigh from "@/assets/icons/IconSunHigh.svg";
@@ -72,6 +73,11 @@ const isActive = (path: string) => {
         ]}
       >
         <li class="col-span-2">
+          <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
+            About
+          </a>
+        </li>
+        <li class="col-span-2">
           <a href="/posts" class:list={{ "active-nav": isActive("/posts") }}>
             Posts
           </a>
@@ -82,18 +88,13 @@ const isActive = (path: string) => {
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/categories/wellbeing" class:list={{ "active-nav": isActive("/categories/wellbeing") }}>
-            Wellbeing
+          <a href="/categories/brain" class:list={{ "active-nav": isActive("/categories/brain") }}>
+            Brain
           </a>
         </li>
         <li class="col-span-2">
-          <a href="/tags" class:list={{ "active-nav": isActive("/tags") }}>
-            Tags
-          </a>
-        </li>
-        <li class="col-span-2">
-          <a href="/about" class:list={{ "active-nav": isActive("/about") }}>
-            About
+          <a href="/categories/history" class:list={{ "active-nav": isActive("/categories/history") }}>
+            History
           </a>
         </li>
         {
@@ -136,12 +137,13 @@ const isActive = (path: string) => {
               <button
                 id="theme-btn"
                 class="focus-outline relative size-12 p-4 sm:size-8 hover:[&>svg]:stroke-accent"
-                title="Toggles light & dark"
+                title="Toggle theme (dark/light/sepia)"
                 aria-label="auto"
                 aria-live="polite"
               >
-                <IconMoon class="absolute top-[50%] left-[50%] -translate-[50%] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-                <IconSunHigh class="absolute top-[50%] left-[50%] -translate-[50%] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                <IconSunHigh id="icon-sun" class="theme-icon absolute top-[50%] left-[50%] -translate-[50%] transition-all" />
+                <IconMoon id="icon-moon" class="theme-icon absolute top-[50%] left-[50%] -translate-[50%] transition-all hidden" />
+                <IconBook id="icon-book" class="theme-icon absolute top-[50%] left-[50%] -translate-[50%] transition-all hidden" />
               </button>
             </li>
           )
@@ -172,8 +174,47 @@ const isActive = (path: string) => {
     });
   }
 
+  function updateThemeIcons() {
+    const theme = document.documentElement.getAttribute("data-theme") || "dark";
+    const iconSun = document.querySelector("#icon-sun");
+    const iconMoon = document.querySelector("#icon-moon");
+    const iconBook = document.querySelector("#icon-book");
+
+    if (!iconSun || !iconMoon || !iconBook) return;
+
+    // Hide all icons first
+    iconSun.classList.add("hidden");
+    iconMoon.classList.add("hidden");
+    iconBook.classList.add("hidden");
+
+    // Show the icon for the current theme
+    if (theme === "light") {
+      iconSun.classList.remove("hidden");
+    } else if (theme === "sepia") {
+      iconBook.classList.remove("hidden");
+    } else {
+      // dark (default)
+      iconMoon.classList.remove("hidden");
+    }
+  }
+
+  // Watch for theme changes
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.attributeName === "data-theme") {
+        updateThemeIcons();
+      }
+    });
+  });
+
+  observer.observe(document.documentElement, { attributes: true });
+
   toggleNav();
+  updateThemeIcons();
 
   // Runs on view transitions navigation
-  document.addEventListener("astro:after-swap", toggleNav);
+  document.addEventListener("astro:after-swap", () => {
+    toggleNav();
+    updateThemeIcons();
+  });
 </script>

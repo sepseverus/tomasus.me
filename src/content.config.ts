@@ -15,7 +15,7 @@ const blog = defineCollection({
       featured: z.boolean().optional(),
       draft: z.boolean().optional(),
       tags: z.array(z.string()).default(["others"]),
-      category: z.enum(["Tech", "Wellbeing"]).default("Tech"),
+      category: z.enum(["Tech", "Brain", "History"]).default("Tech"),
       ogImage: image().or(z.string()).optional(),
       description: z.string(),
       canonicalURL: z.string().optional(),

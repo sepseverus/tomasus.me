@@ -13,11 +13,19 @@ html[data-theme="light"] {
 }
 
 html[data-theme="dark"] {
-  --background: #08080c;
-  --foreground: #8890a0;
+  --background: #0f0f10;
+  --foreground: #a0a8b8;
   --accent: #9e85cc;
-  --muted: #12121a;
-  --border: #1e2030;
+  --muted: #18181b;
+  --border: #27272a;
+}
+
+html[data-theme="sepia"] {
+  --background: #f8f5ec;
+  --foreground: #433422;
+  --accent: #8b6914;
+  --muted: #ebe6d9;
+  --border: #d4cbb8;
 }
 
 @theme inline {

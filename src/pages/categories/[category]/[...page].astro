@@ -14,19 +14,24 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = await getCollection("blog");
 
   const categories: Array<{
-    category: "Tech" | "Wellbeing";
+    category: "Tech" | "Brain" | "History";
     slug: string;
     description: string;
   }> = [
     {
       category: "Tech",
       slug: "tech",
-      description: "Cybersecurity, AI, and technology insights",
+      description: "Technology, AI, and cybersecurity",
     },
     {
-      category: "Wellbeing",
-      slug: "wellbeing",
-      description: "Mental health, biohacking, and wellness practices",
+      category: "Brain",
+      slug: "brain",
+      description: "Health, mental wellness, and personal development",
+    },
+    {
+      category: "History",
+      slug: "history",
+      description: "Historical perspectives and lessons",
     },
   ];
 

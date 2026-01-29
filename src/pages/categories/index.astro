@@ -13,14 +13,20 @@ const categories = [
   {
     name: "Tech",
     slug: "tech",
-    description: "Cybersecurity, AI, and technology insights",
+    description: "Technology, AI, and cybersecurity",
     count: getPostsByCategory(posts, "Tech").length,
   },
   {
-    name: "Wellbeing",
-    slug: "wellbeing",
-    description: "Mental health, biohacking, and wellness practices",
-    count: getPostsByCategory(posts, "Wellbeing").length,
+    name: "Brain",
+    slug: "brain",
+    description: "Health, mental wellness, and personal development",
+    count: getPostsByCategory(posts, "Brain").length,
+  },
+  {
+    name: "History",
+    slug: "history",
+    description: "Historical perspectives and lessons",
+    count: getPostsByCategory(posts, "History").length,
   },
 ];
 ---
@@ -28,7 +34,7 @@ const categories = [
 <Layout title={`Categories | ${SITE.title}`}>
   <Header />
   <Main pageTitle="Categories" pageDesc="Browse posts by category.">
-    <ul class="grid gap-6 sm:grid-cols-2">
+    <ul class="grid gap-6 sm:grid-cols-3">
       {
         categories.map(category => (
           <li>

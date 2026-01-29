@@ -4,7 +4,7 @@ import getSortedPosts from "./getSortedPosts";
 const getRelatedPosts = (
   posts: CollectionEntry<"blog">[],
   currentPostId: string,
-  category: "Tech" | "Wellbeing",
+  category: "Tech" | "Brain" | "History",
   limit: number = 3
 ) => {
   const relatedPosts = getSortedPosts(
