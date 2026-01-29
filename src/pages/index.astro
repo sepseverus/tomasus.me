@@ -3,49 +3,37 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
 import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
-import Tag from "@/components/Tag.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
 import getPostsByCategory from "@/utils/getPostsByCategory";
-import getUniqueTags from "@/utils/getUniqueTags";
-import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
 
 const posts = await getCollection("blog");
 
 const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured).slice(0, 4);
-const latestPosts = sortedPosts.slice(0, SITE.postPerIndex);
+// Show 6 most recent posts in the RECENT section
+const recentPosts = sortedPosts.slice(0, 6);
 
 const techPosts = getPostsByCategory(posts, "Tech");
 const brainPosts = getPostsByCategory(posts, "Brain");
 const historyPosts = getPostsByCategory(posts, "History");
 
-// Get popular tags (top 10)
-const allTags = getUniqueTags(posts);
-const popularTags = allTags.slice(0, 10);
-
 const categories = [
   {
     name: "Tech",
     slug: "tech",
-    description: "Technology, AI, and cybersecurity",
     count: techPosts.length,
   },
   {
     name: "Brain",
     slug: "brain",
-    description: "Health, mental wellness, and personal development",
     count: brainPosts.length,
   },
   {
     name: "History",
     slug: "history",
-    description: "Historical perspectives and lessons",
     count: historyPosts.length,
   },
 ];
@@ -54,116 +42,45 @@ const categories = [
 <Layout>
   <Header />
   <main id="main-content" data-layout="index" class="app-layout">
-    <!-- Hero Section -->
-    <section id="hero" class:list={["pt-8 pb-10", "border-b border-border"]}>
-      <div class="flex items-center justify-between">
-        <h1 class="my-4 text-4xl font-bold sm:my-8 sm:text-5xl">
-          {SITE.title}
-        </h1>
-        <a
-          target="_blank"
-          href="/rss.xml"
-          class="inline-block"
-          aria-label="rss feed"
-          title="RSS Feed"
-        >
-          <IconRss
-            width={20}
-            height={20}
-            class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-          />
-          <span class="sr-only">RSS Feed</span>
-        </a>
-      </div>
-
-      <div class="space-y-4 mt-4">
-        <p class="text-xl font-medium text-foreground">
-          {SITE.desc}
-        </p>
-      </div>
-
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-6 flex max-sm:flex-col sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Connect:</div>
-            <Socials />
-          </div>
-        )
-      }
+    <!-- Banner Image -->
+    <section class="pt-6 pb-8">
+      <img
+        src="/banner.png"
+        alt="Tomasus - AI, cybersecurity, and focus"
+        class="w-full rounded-lg"
+        width="1200"
+        height="300"
+      />
     </section>
 
-    <!-- Category Quick Links Section (Moved up for better discovery) -->
-    <section id="categories" class="pt-12 pb-10 border-b border-border">
-      <h2 class="section-label mb-6">BROWSE BY CATEGORY</h2>
-      <ul class="grid gap-6 sm:grid-cols-3">
+    <!-- Compact Category Pills -->
+    <section id="categories" class="pb-8 border-b border-border">
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="text-sm font-medium text-foreground/60">Browse:</span>
         {
           categories.map(category => (
-            <li>
-              <a
-                href={`/categories/${category.slug}`}
-                class="group block rounded-lg border border-border bg-muted/30 p-6 transition-all hover:border-accent hover:bg-muted/50"
-              >
-                <h3 class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent">
-                  {category.name}
-                </h3>
-                <p class="mb-3 text-sm text-foreground/70">
-                  {category.description}
-                </p>
-                <p class="text-sm font-medium text-accent">
-                  {category.count} {category.count === 1 ? "post" : "posts"}
-                </p>
-              </a>
-            </li>
+            <a
+              href={`/categories/${category.slug}`}
+              class="inline-flex items-center gap-2 rounded-full border border-border bg-muted/30 px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-accent hover:bg-muted/50 hover:text-accent"
+            >
+              {category.name}
+              <span class="text-foreground/50">({category.count})</span>
+            </a>
           ))
         }
-      </ul>
+      </div>
     </section>
 
-    <!-- Featured Posts Section -->
+    <!-- Recent Posts Section -->
     {
-      featuredPosts.length > 0 && (
-        <section id="featured" class="pt-12 pb-10 border-b border-border">
-          <h2 class="section-label mb-6">FEATURED</h2>
+      recentPosts.length > 0 && (
+        <section id="recent" class="pt-10 pb-10 border-b border-border">
+          <h2 class="section-label mb-6">RECENT</h2>
           <ul class="grid gap-6 sm:grid-cols-2">
-            {featuredPosts.map(data => (
+            {recentPosts.map(data => (
               <Card {...data} />
             ))}
           </ul>
-        </section>
-      )
-    }
-
-    <!-- Latest Posts Section -->
-    {
-      latestPosts.length > 0 && (
-        <section id="latest-posts" class="pt-12 pb-10 border-b border-border">
-          <h2 class="section-label mb-6">LATEST POSTS</h2>
-          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {latestPosts.map(data => (
-              <Card {...data} />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-
-    <!-- Popular Tags Section -->
-    {
-      popularTags.length > 0 && (
-        <section id="popular-tags" class="pt-12 pb-10 border-b border-border">
-          <h2 class="section-label mb-6">POPULAR TAGS</h2>
-          <ul class="flex flex-wrap gap-4">
-            {popularTags.map(({ tag, tagName, count }) => (
-              <Tag tag={tag} tagName={tagName} count={count} size="lg" />
-            ))}
-          </ul>
-          <div class="mt-6 text-center">
-            <LinkButton href="/tags/">
-              View All Tags
-              <IconArrowRight class="inline-block rtl:-rotate-180" />
-            </LinkButton>
-          </div>
         </section>
       )
     }

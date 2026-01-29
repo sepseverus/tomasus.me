@@ -5,7 +5,7 @@ title: "About"
 
 ## Who I Am
 
-I'm a curious individual exploring AI, cybersecurity, mental health, wellbeing, and longevity. I write to understand these topics better. Writing forces clarity, and sharing publicly keeps me honest.
+I'm a curious individual exploring AI, cybersecurity, mental health, and wellbeing. I write to understand these topics better. Writing forces clarity, and sharing publicly keeps me honest.
 
 I'm not an expert. I'm a learner documenting the process.
 
@@ -23,7 +23,7 @@ Focus will be one of the most valuable skills in the future. I want to use these
 
 ## My Approach
 
-I care about how technology affects mental health. Privacy and security matter, but so do wellbeing and longevity. These areas connect. How we use technology affects how we feel. The habits we build today shape how we age tomorrow.
+I care about how technology affects mental health. Privacy and security matter, but so does wellbeing. These areas connect. How we use technology affects how we feel. The habits we build today shape our future selves.
 
 Technology is a tool, not a lifestyle.
 
