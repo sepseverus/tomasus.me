@@ -1,9 +1,9 @@
 export const SITE = {
-  website: "https://example.com/", // replace this with your deployed domain
-  author: "Author Name",
-  profile: "https://example.com/",
+  website: "https://tomasus.me/",
+  author: "Tomasus",
+  profile: "https://tomasus.me/",
   desc: "Thoughts on technology, security, and personal development.",
-  title: "Blog",
+  title: "Tomasus",
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 6,
