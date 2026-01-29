@@ -4,8 +4,8 @@ const LIGHT = "light";
 const DARK = "dark";
 const SEPIA = "sepia";
 
-// Theme cycle order: dark → light → sepia → dark
-const THEME_CYCLE = [DARK, LIGHT, SEPIA] as const;
+// Theme cycle order: dark → sepia → dark (light mode removed)
+const THEME_CYCLE = [DARK, SEPIA] as const;
 
 // Initial color scheme
 // Can be "light", "dark", "sepia", or empty string for system's prefers-color-scheme
@@ -19,10 +19,8 @@ function getPreferTheme(): string {
   // return initial color scheme if it is set (site default)
   if (initialColorScheme) return initialColorScheme;
 
-  // return user device's prefer color scheme (system fallback)
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? DARK
-    : LIGHT;
+  // return dark as fallback (light mode removed)
+  return DARK;
 }
 
 // Use existing theme value from inline script if available, otherwise detect
@@ -114,14 +112,4 @@ document.addEventListener("astro:before-swap", event => {
   }
 });
 
-// sync with system changes (only if user hasn't explicitly chosen sepia)
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", ({ matches: isDark }) => {
-    // Only auto-switch if current theme is light or dark (not sepia)
-    if (themeValue !== SEPIA) {
-      themeValue = isDark ? DARK : LIGHT;
-      window.theme?.setTheme(themeValue);
-      setPreference();
-    }
-  });
+// System preference listener removed - only dark and sepia modes available

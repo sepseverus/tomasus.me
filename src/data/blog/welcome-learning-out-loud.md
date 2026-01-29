@@ -2,6 +2,7 @@
 title: "Welcome: Learning Out Loud"
 pubDatetime: 2026-01-28T21:39:33.704Z
 description: "I'm writing notes for myself about AI, cybersecurity, mental health, and maintaining focus. If they help you too, that's a bonus."
+ogImage: ../../assets/images/welcome-balance-scale-optimized.png
 category: Brain
 tags:
   - welcome

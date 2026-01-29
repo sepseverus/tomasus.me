@@ -3,29 +3,26 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+/* Dark mode is default - light mode removed */
 :root,
-html[data-theme="light"] {
-  --background: #eae9df;
-  --foreground: #2c1810;
-  --accent: #7a60b0;
-  --muted: #ddd9cc;
-  --border: #c9c5b8;
-}
-
 html[data-theme="dark"] {
-  --background: #0f0f10;
-  --foreground: #a0a8b8;
-  --accent: #9e85cc;
-  --muted: #18181b;
-  --border: #27272a;
+  --background: #0f0f0f;
+  --foreground: #b8b8b8;
+  --accent: #b8b8c8;
+  --muted: #1a1a1a;
+  --border: #2a2a2a;
+  --heading: #e0e0e0;
+  --muted-text: #707070;
 }
 
 html[data-theme="sepia"] {
-  --background: #f8f5ec;
-  --foreground: #433422;
+  --background: #f4ecd8;
+  --foreground: #5c4a32;
   --accent: #8b6914;
-  --muted: #ebe6d9;
-  --border: #d4cbb8;
+  --muted: #e8dfc8;
+  --border: #d4c9a8;
+  --heading: #3d2e1a;
+  --muted-text: #7a6a52;
 }
 
 @theme inline {
@@ -70,7 +67,7 @@ html[data-theme="sepia"] {
 }
 
 .active-nav {
-  @apply underline decoration-wavy decoration-2 underline-offset-8;
+  @apply border-b-2 border-accent pb-1;
 }
 
 @utility section-label {
