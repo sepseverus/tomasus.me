@@ -1,16 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#b8b8c8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <!-- Central node -->
-  <circle cx="12" cy="12" r="3" fill="#b8b8c8" stroke="none" />
-
-  <!-- Connection lines radiating outward -->
-  <line x1="12" y1="9" x2="12" y2="3" />
-  <line x1="14.5" y1="13.5" x2="19" y2="18" />
-  <line x1="9.5" y1="13.5" x2="5" y2="18" />
-  <line x1="15" y1="12" x2="21" y2="12" />
-
-  <!-- Outer nodes -->
-  <circle cx="12" cy="3" r="2" fill="#b8b8c8" stroke="none" />
-  <circle cx="19" cy="18" r="2" fill="#b8b8c8" stroke="none" />
-  <circle cx="5" cy="18" r="2" fill="#b8b8c8" stroke="none" />
-  <circle cx="21" cy="12" r="2" fill="#b8b8c8" stroke="none" />
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Broken circle: ~40° gap at upper-right (1:30 position) -->
+  <path d="M 20.16 8.20 A 9 9 0 1 1 15.80 3.84" stroke-width="1.5" fill="none" />
+  <!-- T crossbar -->
+  <line x1="7" y1="7.5" x2="17" y2="7.5" stroke-width="2" />
+  <!-- Serif kicks: small downward strokes at crossbar ends -->
+  <line x1="7" y1="7" x2="7" y2="9" stroke-width="1.2" />
+  <line x1="17" y1="7" x2="17" y2="9" stroke-width="1.2" />
+  <!-- T vertical stem -->
+  <line x1="12" y1="7.5" x2="12" y2="16.5" stroke-width="2" />
+  <!-- Quill-tip point at bottom of stem -->
+  <path d="M 11 16.5 L 12 18.5 L 13 16.5 Z" fill="currentColor" stroke="none" />
 </svg>
