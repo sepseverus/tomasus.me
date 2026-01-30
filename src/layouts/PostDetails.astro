@@ -15,6 +15,7 @@ import IconChevronLeft from "@/assets/icons/IconChevronLeft.svg";
 import IconChevronRight from "@/assets/icons/IconChevronRight.svg";
 import { SITE } from "@/config";
 import getRelatedPosts from "@/utils/getRelatedPosts";
+import { renderTitle } from "@/utils/renderTitle";
 import Card from "@/components/Card.astro";
 import AuthorBio from "@/components/AuthorBio.astro";
 
@@ -118,7 +119,7 @@ const relatedPosts = getRelatedPosts(posts, post.id, category, 3);
       transition:name={slugifyStr(title.replaceAll(".", "-"))}
       class="inline-block text-2xl font-bold text-accent sm:text-3xl"
     >
-      {title}
+      <Fragment set:html={renderTitle(title)} />
     </h1>
     <div class="my-2 flex items-center gap-2">
       <Datetime {pubDatetime} {modDatetime} {timezone} size="lg" />
@@ -181,7 +182,7 @@ const relatedPosts = getRelatedPosts(posts, post.id, category, 3);
             <IconChevronLeft class="inline-block flex-none rtl:rotate-180" />
             <div>
               <span>Previous Post</span>
-              <div class="text-sm text-accent/85">{prevPost.title}</div>
+              <div class="text-sm text-accent/85"><Fragment set:html={renderTitle(prevPost.title)} /></div>
             </div>
           </a>
         )
@@ -194,7 +195,7 @@ const relatedPosts = getRelatedPosts(posts, post.id, category, 3);
           >
             <div>
               <span>Next Post</span>
-              <div class="text-sm text-accent/85">{nextPost.title}</div>
+              <div class="text-sm text-accent/85"><Fragment set:html={renderTitle(nextPost.title)} /></div>
             </div>
             <IconChevronRight class="inline-block flex-none rtl:rotate-180" />
           </a>

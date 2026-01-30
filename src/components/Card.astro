@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content";
 import { slugifyStr } from "@/utils/slugify";
 import { getPath } from "@/utils/getPath";
+import { renderTitle } from "@/utils/renderTitle";
 import Datetime from "./Datetime.astro";
 import { Image } from "astro:assets";
 
@@ -62,7 +63,7 @@ const categoryColors = {
         class="mb-2 text-xl font-semibold text-foreground group-hover:text-accent"
         style={{ viewTransitionName: slugifyStr(title.replaceAll(".", "-")) }}
       >
-        {title}
+        <Fragment set:html={renderTitle(title)} />
       </Heading>
       <p class="line-clamp-2 text-sm text-foreground/70">{description}</p>
     </div>
